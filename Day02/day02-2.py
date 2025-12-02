@@ -20,7 +20,7 @@ def is_invalid_2(s):
         if len(s) % l != 0:
             continue
 
-        if s == ''.join(s[:l] * (len(s) // l)):
+        if s == str(s[:l]) * (len(s) // l):
             return True
     return False
 
