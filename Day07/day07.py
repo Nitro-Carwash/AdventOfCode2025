@@ -21,6 +21,6 @@ def calculate_splits(grid):
                 split_count += 1
         beam_indices = next_beam_indices
 
-    return split_count, sum(beam_indices)
+    return f'{split_count} | {sum(beam_indices)}'
 
-print(f'Part 1 | Part 2: {calculate_splits(load_input())}')
+print(f'Part 1 | Part 2:     {calculate_splits(load_input())}')
