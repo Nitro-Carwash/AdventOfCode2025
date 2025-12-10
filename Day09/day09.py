@@ -1,3 +1,4 @@
+import time
 import math
 
 def load_input():
@@ -23,7 +24,6 @@ def intersects_edge(p1, p2, e1, e2):
 
 def find_largest_red_green_area(points, pairs):
     # Build the green-tile edges and then find the maximum red-tile area that can be constructed without intersecting any of these edges
-
     edges = []
     for i in range(1, len(points)):
         edges.append((points[i - 1], points[i]))
@@ -31,8 +31,9 @@ def find_largest_red_green_area(points, pairs):
 
     max_area = 0
     for pair in pairs:
-        if not any(edge for edge in edges if intersects_edge(pair[0], pair[1], edge[0], edge[1])):
-            max_area = max(max_area, area(pair[0], pair[1]))
+        next_max_area = area(pair[0], pair[1])
+        if next_max_area > max_area and next((edge for edge in edges if intersects_edge(pair[0], pair[1], edge[0], edge[1])), -1) == -1:
+            max_area = next_max_area
 
     return max_area
 
